@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4">
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tiro+Bangla:ital@0;1&display=swap');
+        </style>
+    <style>
+        .hind-siliguri {
+        font-family: "Hind Siliguri", sans-serif;
+        }
+
+        .poppins{
+        font-family: "Poppins", sans-serif;
+        }
+
+        .inter{
+        font-family: "Inter", sans-serif;
+        }
+
+        .tiro-bangla {
+        font-family: "Tiro Bangla", serif;
+        }
+        .active{
+            background-color:red;
+            color: white;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <header id="head" class="poppins bg-[#c6bdbd40] border-b border-gray-400 sticky top-0 z-10 backdrop-blur-xl hidden">
+        <div class="navbar  flex justify-between max-w-screen-xl mx-auto ">
+            <div class="flex items-center text-xl">
+                <p>English</p>
+                <img src="./assets/logo.png" alt="">
+                <p class="tiro-bangla">জানালা</p>
+            </div>
+            <div class="">
+                <button id="faq-btn" class="btn border border-[#422ad5] text-[#422ad5] font-semibold hover:bg-[#422ad5] hover:text-white">
+                    <i class="fa-sharp fa-solid fa-circle-question"></i>
+                    <p>FAQ</p>
+                </button>
+                <button id="learn-btn" class="btn border border-[#422ad5] text-[#422ad5] font-semibold hover:bg-[#422ad5] hover:text-white">
+                    <i class="fa-solid fa-book-open"></i>
+                    <p>Learn</p>
+                </button>
+                <button id="logOut-btn" class="btn border border-[#422ad5] text-[#422ad5] font-semibold hover:bg-[#422ad5] hover:text-white">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <p>Logout</p>
+                </button>
+            </div>
+        </div>
+    </header>
+    <section id="hero" class="">
+        <div class="hero poppins">
+            <div class="hero-content flex-col justify-between lg:flex-row-reverse my-16">
+                <img
+                src="./assets/hero-student.png"
+                class="max-w-xl rounded-lg " />
+                <div class="flex flex-col gap-5 items-start w-1/2">
+                    <h2 class="text-5xl font-bold text-[#18181b]"><span class="text-[#00bcff]">English</span> is Easy!!</h2>
+                    <p class="text-2xl font-medium text-[#18181b] hind-siliguri">আজ থেকেই আপনার ভাষা শেখার যাত্রা শুরু করুন। আপনি যদি নতুন হন অথবা আপনার দক্ষতা বাড়াতে চান, আমাদের Interactive Lessons আপনাকে নিয়ে যাবে অন্য একটি Level এ</p>
+                    <input id="name" type="text" placeholder="Enter Your Name" class="text-[#18181b] rounded-sm p-2 w-80 border-gray-300">
+                    <input id="password" type="password" placeholder="123456" class="text-[#18181b] rounded-sm p-2 w-80 border-gray-300">
+                    <button id="btnLogin" class="btn btn-lg text-[#e0e7ff] bg-[#422ad5] rounded-md">Get Started</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="learn" class="poppins max-w-screen-xl mx-auto text-center mt-16 scroll-mt-20 hidden">
+        <h2 class="text-4xl font-bold"><span class="text-[#00bcff]">Let's</span> Learn Vocabularies</h2>
+        <div id="lesson-container" class="w-full h-32 flex justify-center items-center gap-5 flex-wrap">
+            
+        </div>
+        <div id="lesson-description" class="bg-[#f8f8f8] py-20 grid grid-cols-3 gap-5 p-3">
+            <div id="loading" class="hidden flex justify-center items-center col-span-full">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-4 border-blue-500"></div>
+            </div>
+            <div id="empty" class="col-span-full">
+                <h2 class="text-[#79716b] hind-siliguri">আপনি এখনো কোন Lesson Select করেন ন</h2>
+                <h1 class="text-[#292524] hind-siliguri text-4xl font-medium">একটি Lesson Select করুন।</h1>
+            </div>
+        </div>
+    </section>
+    <section id="faq" class="max-w-screen-xl mx-auto poppins my-16 scroll-mt-20 hidden">
+        <p class="text-4xl font-bold mx-auto text-center"><span class="text-[#00bcff]">Frequently</span> Asked Questions</p>
+            <div class="flex flex-col gap-3 my-10">
+                <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                    <input type="radio" name="my-accordion-3" checked="checked" />
+                    <div class="collapse-title font-semibold">What is the difference between var, let, and const?</div>
+                    <div class="collapse-content text-[#62748E]"><p>Use let for variables that need to change.</p>
+                        <p>Use const for variables that shouldn't change.</p>
+                    <p>Avoid var in modern JavaScript.</p></div>
+                    </div>
+                    <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-semibold">What is the difference between map(), forEach(), and filter()</div>
+                    <div class="collapse-content  text-[#62748E]">
+                        <p> Use map() when you want to create a new transformed array.</p>
+                    <p> Use forEach() when you just want to iterate without returning a new array.</p>
+                    <p> Use filter() when you need to create a subset of an array based on a condition.</p>
+                </div>
+                    </div>
+                    <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                    <input type="radio" name="my-accordion-3" />
+                    <div class="collapse-title font-semibold">What is do an arrow functions and how they are different from regular functions</div>
+                    <div class="collapse-content  text-[#62748E]"><p>Arrow function is the update version of normal version.It's shorter then normal function</p></div>
+                    </div>
+                    <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                        <input type="radio" name="my-accordion-3" />
+                        <div class="collapse-title font-semibold"> How the JavaScript Promises work</div>
+                        <div class="collapse-content  text-[#62748E]"> It is used to handle operations that take time, such as fetching data from an API or reading files.</div>
+                    </div>
+                    <div class="collapse collapse-plus bg-base-100 border border-base-300">
+                        <input type="radio" name="my-accordion-3" />
+                        <div class="collapse-title font-semibold"> How closures work in JavaScript</div>
+                        <div class="collapse-content  text-[#62748E]">The inner function can access and manipulate variables that were defined in its surrounding function.</div>
+                    </div>
+            </div>
+    </section>
+    <footer id="footer" class=" border-t border-[#ffebeb] poppins">
+        <div class="max-w-screen-xl mx-auto flex justify-between px-6 mt-20 mb-10">
+            <div class="flex flex-col items-start justify-center gap-2">
+                <div class="flex items-center text-xl">
+                    <p class="font-semibold">English</p>
+                    <img src="/assets/logo.png" alt="">
+                    <p class="tiro-bangla">জানালা</p>
+                </div>
+                <p class="hind-siliguri text-xl font-medium">ইংরেজি শিখুন সহজে</p>
+                <p class="hind-siliguri">Providing ED-Tech Applications since 2025</p>
+            </div>
+            <div class="flex flex-col items-center justify-center gap-3">
+                <h2 class="font-semibold text-[#18181b]">FOLLOW US</h2>
+                <div class="flex gap-5 items-center ">
+                    <img src="./assets/fb-thumb.png" alt="">
+                    <img src="./assets/youtube-thumb.png" alt="">
+                    <img src="./assets/instagram-thumb.png" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div>
+        <!-- Open the modal using ID.showModal() method -->
+<button class="btn hidden" onclick="my_modal_2.showModal()"></button>
+<dialog id="info_details" class="modal">
+    <div class="modal-box">
+        <div id="info-container">
+        </div>
+    </div>
+</dialog>
+    </div>
+    <script>
+        document.getElementById("btnLogin").addEventListener('click',function(){
+
+            const name = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+
+            if(!name || !password){
+                alert('Enter Your Name and Password')
+            }
+            else if(password === "123456"){
+                document.getElementById('head').classList.remove("hidden");
+                document.getElementById('learn').classList.remove("hidden");
+                document.getElementById('faq').classList.remove("hidden");
+                document.getElementById('hero').classList.add("hidden");
+            }
+            else{
+                alert("password wrong")
+            }
+        })
+        
+
+        document.getElementById('logOut-btn').addEventListener('click',function(){
+            document.getElementById('head').classList.add("hidden");
+                document.getElementById('learn').classList.add("hidden");
+                document.getElementById('faq').classList.add("hidden");
+                document.getElementById('hero').classList.remove("hidden");
+        })
+
+        document.getElementById("faq-btn").addEventListener('click',function(){
+            document.getElementById('faq').scrollIntoView({behavior: "smooth"});
+        })
+        document.getElementById("learn-btn").addEventListener('click',function(){
+            document.getElementById("learn").scrollIntoView({behavior: "smooth"});
+        })
+
+        function removeActiveClass(){
+            const activeButton = document.getElementsByClassName('active');
+
+            for(let btn of activeButton){
+                btn.classList.remove("active")
+            }
+        }
+
+        function lessonButton() {
+    fetch("https://openapi.programming-hero.com/api/levels/all")
+    .then((res) => res.json())
+    .then((data) => displayLessonButton(data.data));
+}
+
+        function displayLessonButton(categories){
+            const lessonConainer = document.getElementById('lesson-container');
+
+            for(let les of categories){
+                const lessondiv = document.createElement('div');
+                lessondiv.innerHTML = `
+                <button id="btn-${les.level_no}" onclick="loadCardCategories('${les.level_no}')" class="btn text-[#422ad5] border border-[#422ad5] font-semibold hover:bg-[#422ad5] hover:text-white">
+        <i class="fa-solid fa-book-open"></i>
+        <p class="text-lg">Lesson-${les.level_no}</p>
+    </button>`
+                lessonConainer.appendChild(lessondiv);
+            }
+        }
+
+        function loadCardCategories(level){
+            const url =`https://openapi.programming-hero.com/api/level/${level}`;
+
+            fetch(url)
+            .then((res) => res.json())
+            .then((data)=> {
+                removeActiveClass();
+                const clickButon = document.getElementById(`btn-${level}`)
+                clickButon.classList.add('active')
+                displayCard(data.data);
+            })
+            }
+        
+
+        const details = (infodetails) =>{
+            const urll = `https://openapi.programming-hero.com/api/word/${infodetails}`;
+            
+            fetch(urll)
+            .then((res) => res.json())
+            .then((data) => displayInfo(data.data))
+        }
+
+        const displayInfo = (infoo) =>{
+            document.getElementById('info_details').showModal();
+            const infoContainer = document.getElementById('info-container');
+            infoContainer.innerHTML =`<div class="border border-[#422ad5] rounded-xl p-3 flex flex-col gap-4 items-start m-2">
+        <h2 class="text-4xl font-semibold">${infoo.word}</h2>
+        <div>
+            <h2 class="text-2xl font-semibold">Meaning</h2>
+            <h2 class="hind-siliguri text-2xl font-medium">${infoo.meaning || 'Not Available'}</h2>
+            <h2 class="text-2xl font-semibold">Pronunciation</h2>
+            <h2 class="hind-siliguri text-2xl font-medium">${infoo.pronunciation}</h2>
+        </div>
+        <div>
+            <h2 class="text-2xl font-semibold">Example</h2>
+            <h2 class="text-2xl">${infoo.sentence}</h2>
+        </div>
+        <div>
+            <h2 class="hind-siliguri text-2xl">সমার্থক শব্দ গুলো</h2>
+            <h2 class="text-2xl font-semibold">${infoo.synonyms}</h2>
+        </div>
+       
+         <form method="dialog">
+     <button class="btn text-white bg-[#422ad5] hind-siliguri text-2xl p-3 rounded-md">complete Learning</button>
+  </form>
+    </div>`;
+        }
+
+        function loadCard(){
+            fetch('https://openapi.programming-hero.com/api/words/all')
+            .then((res) => res.json())
+            .then((data) => displayCard(data.data));
+        }
+
+
+        const displayCard = (cards) =>{
+            const lessonDescription = document.getElementById('lesson-description');
+
+            lessonDescription.innerHTML="";
+            if(cards.length === 0){
+                lessonDescription.innerHTML = `<div class="flex flex-col justify-center items-center gap-4 col-span-full">
+        <img src="./assets/alert-error.png" alt="">
+    <h2 class="text-[#79716b]">এই Lesson এ এখনো কোন Vocabulary যুক্ত করা হয়নি।</h2>
+    <p class="text-3xl text-[#292524] font-medium hind-siliguri">নেক্সট Lesson এ যান</p>
+    </div>`;
+            }
+            
+            cards.forEach(card => {
+
+                let wordMeaning = card.meaning;
+                if (!wordMeaning) {
+    wordMeaning = "Not Founded";}
+
+
+                const lessonCard = document.createElement('div')
+
+                lessonCard.innerHTML= `<div class="p-5 shadow-xl flex flex-col items-center justify-center gap-5 bg-white rounded-md h-64">
+        <div class="flex flex-col justify-center items-center gap-2">
+            <h1 class="text-[#292524] hind-siliguri text-4xl font-medium">${card.word}</h1>
+            <p class="font-semibold" >meaning/Pronunciation</p>
+            <p class="text-xl font-medium">"${wordMeaning}/${card.pronunciation}"</p>
+        </div>
+        <div class="flex gap-48">
+            <i onclick="details(${card.id})" class="fa-solid fa-circle-info text-xl bg-gray-300 p-2 rounded-md"></i>
+            <i class="fa-solid fa-volume-high text-xl bg-gray-300 p-2 rounded-md"></i>
+        </div>
+    </div>`;
+
+    lessonDescription.appendChild(lessonCard)
+            })
+        };
+
+lessonButton();
+    </script>
+</body>
+</html>
